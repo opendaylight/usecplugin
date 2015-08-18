@@ -1,0 +1,9 @@
+module usecplugin {
+    yang-version 1;
+    namespace "urn:opendaylight:params:xml:ns:yang:usecplugin";
+    prefix "usecplugin";
+
+    revision "2015-01-05" {
+        description "Initial revision of usecplugin model";
+    }
+}
