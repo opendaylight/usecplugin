@@ -16,7 +16,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
   
   
   <feature name='odl-usecplugin-api' version='${project.version}' description='OpenDaylight :: usecplugin :: api'>
-    <feature version='${yangtools.version}'>odl-yangtools-models</feature>
+    <feature version='${yangtools.version}'>odl-mdsal-models</feature>
     <bundle>mvn:org.opendaylight.usecplugin/usecplugin-api/${project.version}</bundle>
   </feature>
   <feature name='odl-usecplugin' version='${project.version}' description='OpenDaylight :: usecplugin'>
