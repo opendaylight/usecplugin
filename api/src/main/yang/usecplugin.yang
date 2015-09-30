@@ -6,4 +6,45 @@ module usecplugin {
     revision "2015-01-05" {
         description "Initial revision of usecplugin model";
     }
+
+    container security {
+        list security-elements {
+            key secKey;
+            leaf secKey {
+                type string;
+            }
+            leaf nodeID {
+                type string;
+            }
+            leaf nodeConnectorID {
+                type string;
+            }
+            leaf srcIP {
+                type string;
+            }
+            leaf dstIP {
+                type string;
+            }
+            leaf protocol {
+                type string;
+            }
+            leaf srcPort {
+                type uint16;
+            }
+            leaf dstPort {
+                type uint16;
+            }
+            leaf packetSize {
+                type uint16;
+            }
+            leaf upwardTime {
+                type string;
+            }
+            leaf downwardTime {
+                type string;
+            }
+            config false;
+        }
+    }
+
 }
