@@ -91,6 +91,23 @@
       "revId": "fed1333d3637f20223033191021b099d67d46e8c",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab3e1c7_48b65fde",
+        "filename": "impl/src/main/java/org/opendaylight/usecplugin/impl/sqlite-jdbc-3.7.2.jar",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2567
+      },
+      "writtenOn": "2015-11-10T01:04:44Z",
+      "side": 1,
+      "message": "Do not commit jar files into gerrit.  Please import sqlite-jdbc through maven dependencies.",
+      "revId": "fed1333d3637f20223033191021b099d67d46e8c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
