@@ -1,3 +1,11 @@
+/*
+ * Copyright (c) 2015 Tata Consultancy Services and others.  All rights reserved.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v1.0 which accompanies this distribution,
+ * and is available at http://www.eclipse.org/legal/epl-v10.html
+ */
+
 package org.opendaylight.usecplugin.impl;
 
 import org.opendaylight.controller.md.sal.binding.api.DataBroker;
@@ -15,9 +23,6 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by user on 9/9/15.
- */
 public class UsecpluginStore {
     private static final Logger LOG = LoggerFactory.getLogger(UsecpluginStore.class);
     private DataBroker dataBroker;
