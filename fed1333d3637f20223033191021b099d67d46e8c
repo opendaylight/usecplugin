@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bab3e1c7_a8727b47",
+        "filename": "api/.classpath",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2567
+      },
+      "writtenOn": "2015-11-10T01:03:20Z",
+      "side": 1,
+      "message": "We general should gitignore the .classpath file.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 38
+      },
+      "revId": "fed1333d3637f20223033191021b099d67d46e8c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab3e1c7_488f3f24",
+        "filename": "api/.settings/org.eclipse.core.resources.prefs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2567
+      },
+      "writtenOn": "2015-11-10T01:03:20Z",
+      "side": 1,
+      "message": "We general should gitignore the .settings folder.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 24
+      },
+      "revId": "fed1333d3637f20223033191021b099d67d46e8c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab3e1c7_0899476e",
+        "filename": "impl/.classpath",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2567
+      },
+      "writtenOn": "2015-11-10T01:03:20Z",
+      "side": 1,
+      "message": "We general should gitignore the .classpath file.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 38
+      },
+      "revId": "fed1333d3637f20223033191021b099d67d46e8c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab3e1c7_289e8b57",
+        "filename": "impl/pom.xml~",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2567
+      },
+      "writtenOn": "2015-11-10T01:03:20Z",
+      "side": 1,
+      "message": "We general should gitignore the ~ files.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 38
+      },
+      "revId": "fed1333d3637f20223033191021b099d67d46e8c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
