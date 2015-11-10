@@ -48,6 +48,52 @@
     },
     {
       "key": {
+        "uuid": "bab3e1c7_e8c63349",
+        "filename": "api/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 2567
+      },
+      "writtenOn": "2015-11-10T01:12:16Z",
+      "side": 1,
+      "message": "binding-parent is in mdsal",
+      "range": {
+        "startLine": 11,
+        "startChar": 30,
+        "endLine": 11,
+        "endChar": 39
+      },
+      "revId": "fed1333d3637f20223033191021b099d67d46e8c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab3e1c7_88c3f737",
+        "filename": "api/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 2567
+      },
+      "writtenOn": "2015-11-10T01:12:16Z",
+      "side": 1,
+      "message": "Current version is 0.8.0",
+      "range": {
+        "startLine": 13,
+        "startChar": 15,
+        "endLine": 13,
+        "endChar": 16
+      },
+      "revId": "fed1333d3637f20223033191021b099d67d46e8c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bab3e1c7_0899476e",
         "filename": "impl/.classpath",
         "patchSetId": 1
@@ -64,6 +110,29 @@
         "startChar": 0,
         "endLine": 1,
         "endChar": 38
+      },
+      "revId": "fed1333d3637f20223033191021b099d67d46e8c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab3e1c7_68e243d7",
+        "filename": "impl/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 2567
+      },
+      "writtenOn": "2015-11-10T01:12:16Z",
+      "side": 1,
+      "message": "Please use Beryllium versions",
+      "range": {
+        "startLine": 12,
+        "startChar": 13,
+        "endLine": 12,
+        "endChar": 14
       },
       "revId": "fed1333d3637f20223033191021b099d67d46e8c",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
