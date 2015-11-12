@@ -5,7 +5,6 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-
 package org.opendaylight.usecplugin.impl;
 
 import org.opendaylight.controller.md.sal.binding.api.DataBroker;
@@ -23,24 +22,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-
 public class PacketHandler implements PacketProcessingListener {
 
 	private DataBroker dataBroker;
-
-	public DataBroker getdataBroker() {
-		return dataBroker;
-	}
-
-	public void setdataBroker(DataBroker dataBroker) {
-		this.dataBroker = dataBroker;
-	}
-
 	int counter, packetSize; 									//Counter of Packet_Ins; Size of Packet_In
 	float avgPacketInRate; 										//Average Packet_In Rate
 	Calendar calendar = Calendar.getInstance(); 				//Calendar instance
-	long oldTime = calendar.getTimeInMillis(); 					//Reference Time
-	long newTime, timeDiff;										//Time at Samples number of packets arrives
+	Long oldTime = calendar.getTimeInMillis(); 					//Reference Time
+	Long newTime, timeDiff;										//Time at Samples number of packets arrives
 	int lowWaterMark = 1000;									//Low Water Mark for Packet Received Rate
 	int highWaterMark = 50000; 									//High Water Mark for Packet Received Rate
 	int samples = 1000; 										//Samples determines number of packets received
@@ -53,16 +42,29 @@ public class PacketHandler implements PacketProcessingListener {
 	String ingressConnector, ingressNode;						//Ingress Switch Port and Switch
 	byte[] payload, srcMacRaw, dstMacRaw, srcIPRaw, dstIPRaw, rawIPProtocol, rawEthType,rawSrcPort, rawDstPort;
 	DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-	String upwardTime, downwardTime;							//Low Water Mark Breach - Upward and Downward Times
-	long upTime, downTime, currentTime;							//Time Interval Above LWM and Below LWM
+	String upwardTime, downwardTime, diffTimeString;							//Low Water Mark Breach - Upward and Downward Times
+	Long upTime, downTime, currentTime;							//Time Interval Above LWM and Below LWM
 	Boolean LWMBreach = false;									//Flag for LWM Breach
 	Boolean notificationSent = false;							//Flag for LWM Breach Notification
 	List<String> dataBaseKeyList = new ArrayList<String>();		//Yang DataStore Key List
 	UsecpluginStore usecpluginStore = new UsecpluginStore();	//For Yang Data Store Creation
+	Double diffTime;
+	UsecpluginDataBase usecpluginDataBase = new UsecpluginDataBase();
 	private static final Logger LOG = LoggerFactory.getLogger(PacketHandler.class);
+
+	public DataBroker getdataBroker() {
+		return dataBroker;
+	}
+
+	public void setdataBroker(DataBroker dataBroker) {
+		this.dataBroker = dataBroker;
+	}
+
+	public void dbOpen(){ usecpluginDataBase.dbOpen(); }
 
 	@Override
 	public void onPacketReceived(PacketReceived notification) {
+
 		LOG.debug("Low Water Mark is ", lowWaterMark);
 		counter = counter + 1;
 
@@ -116,8 +118,12 @@ public class PacketHandler implements PacketProcessingListener {
 
 				upTime = calendar.getTimeInMillis();
 				upwardTime = dateFormat.format(upTime); //for storing in DataStore
-				usecpluginStore.addData(databaseKey, ingressNode, ingressConnector, srcIP, dstIP, IPProtocol, srcPort, dstPort, packetSize, upwardTime, downwardTime);
-				LOG.debug("Information Store in Data Store is ", ingressNode, ingressConnector, srcIP, dstIP, IPProtocol, srcPort, dstPort, packetSize, upwardTime, downwardTime);
+				usecpluginStore.addData(databaseKey, ingressNode, ingressConnector, srcIP, dstIP,
+						IPProtocol, srcPort, dstPort, packetSize, upwardTime, downwardTime);
+//				LOG.debug("Information Stored in Data Store is ", ingressNode, ingressConnector, srcIP, dstIP,IPProtocol, srcPort, dstPort, packetSize, upwardTime, downwardTime);
+				System.out.println("Information Stored in Data Store is "+ ingressNode+ ingressConnector+ srcIP+ dstIP+
+						IPProtocol+ srcPort+ dstPort+ packetSize+ upwardTime+ downwardTime);
+
 			}
 
 			//Avoiding multiple notifications
@@ -145,10 +151,15 @@ public class PacketHandler implements PacketProcessingListener {
 		else if ((avgPacketInRate < lowWaterMark) && !LWMBreach) {
 			notificationSent = false; //for generation of new notifications on new LWM breach
 			currentTime = calendar.getTimeInMillis();
-			if (downTime != 0) {
+			if (downTime != null) {
 				if ((currentTime - downTime) > 5000) {
 					for (String dbKey : dataBaseKeyList) {
+						diffTime = (downTime - upTime) * 0.001;
+						diffTimeString = diffTime.toString();
+						usecpluginDataBase.dbWrite(ingressNode, ingressConnector, srcIP, dstIP,
+								IPProtocol, srcPort, dstPort, packetSize, diffTimeString, upwardTime, downwardTime);
 						usecpluginStore.delData(dbKey);
+
 					}
 					//clearing the dataBaseKeyList
 					if (!dataBaseKeyList.isEmpty()) {

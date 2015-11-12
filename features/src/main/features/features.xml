@@ -13,7 +13,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
   <repository>mvn:org.opendaylight.yangtools/features-yangtools/${yangtools.version}/xml/features</repository>
   <repository>mvn:org.opendaylight.controller/features-mdsal/${mdsal.version}/xml/features</repository>
   <repository>mvn:org.opendaylight.controller/features-restconf/${mdsal.version}/xml/features</repository>
-  
+  <repository>mvn:org.opendaylight.openflowplugin/features-openflowplugin/${openflowplugin.version}/xml/features</repository>  
   
   <feature name='odl-usecplugin-api' version='${project.version}' description='OpenDaylight :: usecplugin :: api'>
     <feature version='${yangtools.version}'>odl-mdsal-models</feature>
@@ -21,6 +21,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
   </feature>
   <feature name='odl-usecplugin' version='${project.version}' description='OpenDaylight :: usecplugin'>
     <feature version='${mdsal.version}'>odl-mdsal-broker</feature>
+    <feature version='${openflowplugin.version}'>odl-openflowplugin-all</feature>
     <feature version='${project.version}'>odl-usecplugin-api</feature>
     <bundle>mvn:org.opendaylight.usecplugin/usecplugin-impl/${project.version}</bundle>
     <configfile finalname="${configfile.directory}/usecplugin.xml">mvn:org.opendaylight.usecplugin/usecplugin-impl/${project.version}/xml/config</configfile>
