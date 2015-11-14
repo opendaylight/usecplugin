@@ -12,9 +12,8 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
   xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.2.0 http://karaf.apache.org/xmlns/features/v1.2.0">
   <repository>mvn:org.opendaylight.yangtools/features-yangtools/${yangtools.version}/xml/features</repository>
   <repository>mvn:org.opendaylight.controller/features-mdsal/${mdsal.version}/xml/features</repository>
-  <repository>mvn:org.opendaylight.controller/features-restconf/${mdsal.version}/xml/features</repository>
-  
-  
+  <repository>mvn:org.opendaylight.netconf/features-restconf/${restconf.version}/xml/features</repository>
+
   <feature name='odl-usecplugin-api' version='${project.version}' description='OpenDaylight :: usecplugin :: api'>
     <feature version='${yangtools.version}'>odl-mdsal-models</feature>
     <bundle>mvn:org.opendaylight.usecplugin/usecplugin-api/${project.version}</bundle>
@@ -27,7 +26,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
   </feature>
   <feature name='odl-usecplugin-rest' version='${project.version}' description='OpenDaylight :: usecplugin :: REST'>
     <feature version="${project.version}">odl-usecplugin</feature>
-    <feature version="${mdsal.version}">odl-restconf</feature>
+    <feature version="${restconf.version}">odl-restconf</feature>
   </feature>
   <feature name='odl-usecplugin-ui' version='${project.version}' description='OpenDaylight :: usecplugin :: UI'>
     <feature version="${project.version}">odl-usecplugin-rest</feature>
