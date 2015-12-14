@@ -19,11 +19,11 @@ public class UsecpluginDataBase {
     Statement stmt = null;
     public void dbOpen() {
         try {
-            System.out.println("Creating SQLite DB by Usecplugin");
+            System.out.println("Creating LWM Usecplugin");
             Class.forName("org.sqlite.JDBC", true, Thread.currentThread().getContextClassLoader());
             connection = DriverManager.getConnection("jdbc:sqlite:usecplugin:db");
             connection.setAutoCommit(false);
-            System.out.println("Opened DB Successfully");
+            System.out.println("Opened LWM DB Successfully");
             stmt = connection.createStatement();
             DatabaseMetaData metaData = connection.getMetaData();
             ResultSet tableInfo = metaData.getTables(null, null, "%", null);
@@ -79,7 +79,7 @@ public class UsecpluginDataBase {
             Class.forName("org.sqlite.JDBC", true, Thread.currentThread().getContextClassLoader());
             connection = DriverManager.getConnection("jdbc:sqlite:usecplugin:db");
             connection.setAutoCommit(false);
-            System.out.println("Opened DB Successfully");
+            System.out.println("Opened LWM DB Successfully");
             stmt = connection.createStatement();
             int IDCount;  
             IDCount = 0;          

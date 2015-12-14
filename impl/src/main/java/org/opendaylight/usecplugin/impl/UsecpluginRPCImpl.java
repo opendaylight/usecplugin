@@ -55,14 +55,27 @@ public class UsecpluginRPCImpl implements UsecpluginService {
     private static final Logger LOG = LoggerFactory.getLogger(UsecpluginRPCImpl.class);
     Connection connection = null;
     Statement stmt = null;
+    static boolean Testvalue=false;
+    AttackIDOutputBuilder attackBuilder = new AttackIDOutputBuilder();
+    AttacksFromIPOutputBuilder attack1Builder = new AttacksFromIPOutputBuilder();
+    AttacksToIPOutputBuilder attack2Builder = new AttacksToIPOutputBuilder();
+
     // AttackID
-	    
     @Override
     public Future<RpcResult<AttackIDOutput>> attackID(AttackIDInput input) {
-        AttackIDOutputBuilder attackBuilder = new AttackIDOutputBuilder();
         LOG.info("AttackID_RPC Implementation Initiated");
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:usecplugin:db");
+            if(Testvalue == true)
+	    {
+        //Edit this loop with the path to the usecplugin:db in your system
+	    connection = DriverManager.getConnection("jdbc:sqlite:usecplugin:db");
+	    }
+	    else
+	    {
+	    Testvalue = false;
+	    connection = DriverManager.getConnection("jdbc:sqlite:usecplugin:db");       
+	    }
+            
             connection.setAutoCommit(false);
             System.out.println("Opened DB Successfully");
             stmt = connection.createStatement();
@@ -87,11 +100,18 @@ public class UsecpluginRPCImpl implements UsecpluginService {
     
     @Override
     public Future<RpcResult<AttacksFromIPOutput>> attacksFromIP(AttacksFromIPInput input) {
-    	AttacksFromIPOutputBuilder attack1Builder = new AttacksFromIPOutputBuilder();
-     
     	LOG.info("AttacksFromIP_RPC Implementation Initiated");
         try {
+            if(Testvalue == true)
+            {
+            //Edit this loop with the path to the usecplugin:db in your system
             connection = DriverManager.getConnection("jdbc:sqlite:usecplugin:db");
+            }
+            else
+            {
+            Testvalue = false;
+            connection = DriverManager.getConnection("jdbc:sqlite:usecplugin:db");   
+            }
             connection.setAutoCommit(false);
             System.out.println("Opened DB Successfully");
             stmt = connection.createStatement();
@@ -115,11 +135,18 @@ public class UsecpluginRPCImpl implements UsecpluginService {
     
     @Override
     public Future<RpcResult<AttacksToIPOutput>> attacksToIP(AttacksToIPInput input) {
-    	AttacksToIPOutputBuilder attack2Builder = new AttacksToIPOutputBuilder();
       	LOG.info("AttacksToIP_RPC Implementation Initiated");
-	
         try {
+            if(Testvalue == true)
+            {
+            //Edit this loop with the path to the usecplugin:db in your system
             connection = DriverManager.getConnection("jdbc:sqlite:usecplugin:db");
+            }
+            else
+            {
+            Testvalue = false;
+            connection = DriverManager.getConnection("jdbc:sqlite:usecplugin:db");   
+            }
             connection.setAutoCommit(false);
             System.out.println("Opened DB Successfully");
             stmt = connection.createStatement();
@@ -143,35 +170,13 @@ public class UsecpluginRPCImpl implements UsecpluginService {
     }
     
     //AttacksInTime
+/*====Commented by Rafat.Will be uncommented later======================*/
+
     @Override
     public Future<RpcResult<AttacksInTimeOutput>> attacksInTime(AttacksInTimeInput input) {
-    	AttacksInTimeOutputBuilder attack3Builder = new AttacksInTimeOutputBuilder();
-      	LOG.info("AttacksInTime_RPC Implementation Initiated");
-        try {
-            connection = DriverManager.getConnection("jdbc:sqlite:usecplugin:db");
-            connection.setAutoCommit(false);
-            System.out.println("Opened DB Successfully");
-            stmt = connection.createStatement();
-            String time = input.getUpwardTime();
-            int window = input.getWindow();
-            SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            java.sql.Date date1 = new java.sql.Date(df.parse(time).getTime());
-	    Calendar gc = new GregorianCalendar();
-	    gc.setTime(date1);
-	    gc.add(Calendar.MINUTE, window);
-	    String time1 = df.format(gc.getTime());
-	    System.out.println(time1);
-	    String s2 = "SELECT  UpwardTime, Count(*) as ATTACKS FROM UsecPluginLWM WHERE UpwardTime BETWEEN '" + time + "' AND  '" + time1 + "' ";
-            ResultSet rs = stmt.executeQuery(s2);
-            attack3Builder.setNoOfAttacks(rs.getInt("ATTACKS"));
-            stmt.close();
-            connection.commit();
-            connection.close();
-        }
-        catch (Exception e) {
-     	    System.err.println("Error Occured..." + e.getClass().getName() + ": " + e.getMessage());
-    	    e.printStackTrace();
-    	    }
-       return RpcResultBuilder.success(attack3Builder.build()).buildFuture();
+		return null;
+    	
     }
+
 }
+

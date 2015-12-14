@@ -8,6 +8,9 @@
 package org.opendaylight.usecplugin.impl;
 
 import org.opendaylight.controller.md.sal.binding.api.DataBroker;
+import org.opendaylight.controller.md.sal.binding.api.NotificationPublishService;
+import org.opendaylight.controller.md.sal.binding.api.ReadOnlyTransaction;
+import org.opendaylight.controller.md.sal.common.api.data.LogicalDatastoreType;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.inventory.rev130819.NodeConnectorId;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.inventory.rev130819.NodeConnectorRef;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.inventory.rev130819.NodeId;
@@ -15,6 +18,11 @@ import org.opendaylight.yang.gen.v1.urn.opendaylight.packet.service.rev130709.Pa
 import org.opendaylight.yang.gen.v1.urn.opendaylight.packet.service.rev130709.PacketReceived;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.usecplugin.rev150105.SampleDataLwm;
+import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.usecplugin.rev150105.UsecpluginListener;
+import org.opendaylight.controller.sal.binding.api.NotificationProviderService;
+import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.usecplugin.rev150105.LowWaterMarkBreachedBuilder;
+import org.opendaylight.yangtools.yang.binding.InstanceIdentifier;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -30,8 +38,7 @@ public class PacketHandler implements PacketProcessingListener {
 	Calendar calendar = Calendar.getInstance(); 				//Calendar instance
 	Long oldTime = calendar.getTimeInMillis(); 					//Reference Time
 	Long newTime, timeDiff;										//Time at Samples number of packets arrives
-	int lowWaterMark = 1000;									//Low Water Mark for Packet Received Rate
-	int highWaterMark = 50000; 									//High Water Mark for Packet Received Rate
+	int lowWaterMark = 1000;									//Low Water Mark for Packet Received Rate								
 	int samples = 1000; 										//Samples determines number of packets received
 	String srcIP, dstIP, IPProtocol, srcMac, dstMac;			//SourceIPAddress, DestinationIPAddress, IPProtocol, Src and Dst Mac Addresses
 	String stringEthType;										//Ether Type as String
@@ -41,7 +48,7 @@ public class PacketHandler implements PacketProcessingListener {
 	NodeConnectorId ingressNodeConnectorId;						//Ingress Switch Port Id from DataStore
 	String ingressConnector, ingressNode;						//Ingress Switch Port and Switch
 	byte[] payload, srcMacRaw, dstMacRaw, srcIPRaw, dstIPRaw, rawIPProtocol, rawEthType,rawSrcPort, rawDstPort;
-	DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	String upwardTime, downwardTime, diffTimeString;							//Low Water Mark Breach - Upward and Downward Times
 	Long upTime, downTime, currentTime;							//Time Interval Above LWM and Below LWM
 	Boolean LWMBreach = false;									//Flag for LWM Breach
@@ -51,15 +58,39 @@ public class PacketHandler implements PacketProcessingListener {
 	Double diffTime;
 	UsecpluginDataBase usecpluginDataBase = new UsecpluginDataBase();
 	private static final Logger LOG = LoggerFactory.getLogger(PacketHandler.class);
+       
+    NotificationProviderService notificationProviderService;
+    NotificationPublishService notificationPublishService;
+    UsecpluginListener usecpluginListener;
 
-	public DataBroker getdataBroker() {
+        
+        public DataBroker getdataBroker() {
 		return dataBroker;
 	}
 
 	public void setdataBroker(DataBroker dataBroker) {
 		this.dataBroker = dataBroker;
 	}
+	
+    public void setNotificationProviderService(NotificationProviderService notificationProviderService) {
+        this.notificationProviderService = notificationProviderService;
+     }
+     public void setNotificationPublisService(NotificationPublishService notificationPublisService) {
+        this.notificationPublishService = notificationPublisService;
+     }
 
+    public  void getLWMSample()	
+	{
+	 try {
+	     InstanceIdentifier<SampleDataLwm> identifierList = InstanceIdentifier.builder(SampleDataLwm.class).build();
+	     ReadOnlyTransaction tx = dataBroker.newReadOnlyTransaction();
+             samples = tx.read(LogicalDatastoreType.CONFIGURATION, identifierList).checkedGet().get().getSamplesLwm();
+             lowWaterMark = tx.read(LogicalDatastoreType.CONFIGURATION, identifierList).checkedGet().get().getLowWaterMarkLwm();
+        } catch (Exception e) {
+	        LOG.error("failed: LWM ", e);
+	       }			
+	}
+	
 	public void dbOpen(){ usecpluginDataBase.dbOpen(); }
 
 	@Override
@@ -78,13 +109,16 @@ public class PacketHandler implements PacketProcessingListener {
 		}
 
 		if (avgPacketInRate > lowWaterMark) {
-
+			if (LWMBreach == false) {
+               		 LowWaterMarkBreachedBuilder lowWaterMarkBreachedBuilder = new LowWaterMarkBreachedBuilder();
+               		 notificationProviderService.publish(lowWaterMarkBreachedBuilder.build());
+                	 }
 			usecpluginStore.setdataBroker(dataBroker);
 			calendar = Calendar.getInstance();
 			downwardTime = "0";
 			LWMBreach = true;
 
-//////////////////////////////////////////////////////////////
+                 //////////////////////////////////////////////////////////////
 			//Packet Parsing
 			ingressNodeConnectorRef = notification.getIngress();
 			ingressNodeConnectorId = InventoryUtility.getNodeConnectorId(ingressNodeConnectorRef);
@@ -109,7 +143,7 @@ public class PacketHandler implements PacketProcessingListener {
 			srcPort = PacketParsing.rawPortToInteger(rawSrcPort);
 			rawDstPort = PacketParsing.extractDstPort(payload);
 			dstPort = PacketParsing.rawPortToInteger(rawDstPort);
-//////////////////////////////////////////////////////////////////////////////
+                       //////////////////////////////////////////////////////////////////////////////
 
 			String databaseKey = ingressNode + "-" + srcIP;
 			// To avoid repetitive addition of dataBaseKey to the dataBaseKeyList
@@ -120,7 +154,6 @@ public class PacketHandler implements PacketProcessingListener {
 				upwardTime = dateFormat.format(upTime); //for storing in DataStore
 				usecpluginStore.addData(databaseKey, ingressNode, ingressConnector, srcIP, dstIP,
 						IPProtocol, srcPort, dstPort, packetSize, upwardTime, downwardTime);
-//				LOG.debug("Information Stored in Data Store is ", ingressNode, ingressConnector, srcIP, dstIP,IPProtocol, srcPort, dstPort, packetSize, upwardTime, downwardTime);
 				System.out.println("Information Stored in Data Store is "+ ingressNode+ ingressConnector+ srcIP+ dstIP+
 						IPProtocol+ srcPort+ dstPort+ packetSize+ upwardTime+ downwardTime);
 

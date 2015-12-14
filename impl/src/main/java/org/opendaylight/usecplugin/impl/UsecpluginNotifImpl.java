@@ -19,6 +19,6 @@ import org.opendaylight.yangtools.yang.binding.Notification;
 public class UsecpluginNotifImpl implements UsecpluginListener {
     @Override
     public void onLowWaterMarkBreached(LowWaterMarkBreached notification) {
-    System.out.println(" Inside UsecpluginNotifImpl ");
+    System.out.println("NotificationReceived");
     }
 }

@@ -62,8 +62,8 @@ module usecplugin {
     description
        "Indicates that the Low Water Mark has Breached.";   
     }
-    container security {
-        list security-elements {
+    container LWM {
+        list lowwatermark{
             key secKey;
             leaf secKey {
                 type string;
@@ -101,4 +101,68 @@ module usecplugin {
             config false;
         }
     }
+    
+       container sample-data-hwm { 
+        leaf samples {
+            type uint16;
+            mandatory true;
+        }
+        leaf highWaterMark {
+            type uint16;
+            mandatory true;
+        }  
+  }  
+  
+   container sample-data-lwm {
+        leaf samples-lwm {
+            type uint16;
+            mandatory true;
+        }
+        leaf lowWaterMark-lwm {
+            type uint16;
+            mandatory true;
+        }   
+  }  
+  
+        container HWM {
+        list highwatermark {
+            key secKey;
+            leaf secKey {
+                type string;
+            }
+           leaf nodeID {
+                type string;
+            }
+            leaf nodeConnectorID {
+                type string;
+            }
+            leaf srcIP {
+                type string;
+            }
+            leaf dstIP {
+                type string;
+            }
+            leaf protocol {
+                type string;
+            }
+            leaf srcPort {
+                type uint16;
+            }
+            leaf dstPort {
+                type uint16;
+            }
+            leaf packetSize {
+                type uint16;
+            }
+            leaf upwardTime {
+                type string;
+            }
+            leaf downwardTime {
+                type string;
+            }
+
+            config false;
+        }
+    }
+    
 }

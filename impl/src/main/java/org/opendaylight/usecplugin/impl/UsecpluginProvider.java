@@ -9,11 +9,11 @@ package org.opendaylight.usecplugin.impl;
 
 import org.opendaylight.controller.md.sal.binding.api.DataBroker;
 import org.opendaylight.controller.sal.binding.api.NotificationService;
-
 import org.opendaylight.yangtools.concepts.Registration;
 import org.opendaylight.controller.sal.binding.api.BindingAwareBroker.ProviderContext;
 import org.opendaylight.controller.sal.binding.api.BindingAwareProvider;
 import org.opendaylight.controller.sal.binding.api.BindingAwareBroker.RpcRegistration;
+import org.opendaylight.controller.sal.binding.api.NotificationProviderService;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.usecplugin.rev150105.UsecpluginService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,11 +39,29 @@ public class UsecpluginProvider implements  BindingAwareProvider, AutoCloseable{
         NotificationService notificationService = session.getSALService(NotificationService.class);
         PacketHandler packetHandler = new PacketHandler();
         notificationService.registerNotificationListener(packetHandler);
+        
+        NotificationProviderService notificationProvider = session.getSALService(NotificationProviderService.class);
+        packetHandler.setNotificationProviderService(notificationProvider);
+
+        
+        PacketHandler_HWM packetHandler_hwm = new PacketHandler_HWM();
+        notificationService.registerNotificationListener(packetHandler_hwm);
+        
         dataBroker = session.getSALService(DataBroker.class);
+        
+        packetHandler_hwm.setdataBroker(dataBroker);
+        packetHandler_hwm.dbHwm();
+        
         packetHandler.setdataBroker(dataBroker);
         packetHandler.dbOpen();
+        
         UsecpluginNotifImpl listener = new UsecpluginNotifImpl();
-  	listener.onLowWaterMarkBreached(notification);
+  	notificationService.registerNotificationListener(listener);
+  	    
+  	    
+  	packetHandler_hwm.getHWMSample();
+  	packetHandler.getLWMSample();  	  
+  	    
     }
 
     @Override
