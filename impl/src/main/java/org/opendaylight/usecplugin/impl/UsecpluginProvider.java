@@ -44,13 +44,13 @@ public class UsecpluginProvider implements  BindingAwareProvider, AutoCloseable{
         packetHandler.setNotificationProviderService(notificationProvider);
 
         
-        PacketHandler_HWM packetHandler_hwm = new PacketHandler_HWM();
-        notificationService.registerNotificationListener(packetHandler_hwm);
+        //PacketHandler_HWM packetHandler_hwm = new PacketHandler_HWM();
+        //notificationService.registerNotificationListener(packetHandler_hwm);
         
         dataBroker = session.getSALService(DataBroker.class);
         
-        packetHandler_hwm.setdataBroker(dataBroker);
-        packetHandler_hwm.dbHwm();
+        //packetHandler_hwm.setdataBroker(dataBroker);
+        //packetHandler_hwm.dbHwm();
         
         packetHandler.setdataBroker(dataBroker);
         packetHandler.dbOpen();
@@ -59,8 +59,8 @@ public class UsecpluginProvider implements  BindingAwareProvider, AutoCloseable{
   	notificationService.registerNotificationListener(listener);
   	    
   	    
-  	packetHandler_hwm.getHWMSample();
-  	packetHandler.getLWMSample();  	  
+  	//packetHandler_hwm.getHWMSample();
+  	//packetHandler.getLWMSample();  	  
   	    
     }
 
