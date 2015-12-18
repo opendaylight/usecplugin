@@ -30,11 +30,11 @@
 					<instructions>
 						<Import-Package>*</Import-Package>
 						<Export-Package></Export-Package>
-                                                <Bundle-ClassPath>
-                                                        .,
-                                                        sqlite-jdbc-3.7.2.jar
-                                                </Bundle-ClassPath>
-                                        </instructions>
+						<Bundle-ClassPath>
+							.,
+							sqlite-jdbc-3.7.2.jar
+						</Bundle-ClassPath>
+					</instructions>
 				</configuration>
 			</plugin>
 		</plugins>
