@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1aa4ed85_93aa166f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 2759
+      },
+      "writtenOn": "2015-12-21T18:36:36Z",
+      "side": 1,
+      "message": "No need to specify \"M5 Upload\". A commit message should just explain what the code is doing in present-tense, imperative-style.\n\nWhat is this code change doing?\n\nPerhaps this is a better subject line:\n\n Implement HWMark and SQLite integration",
+      "revId": "d8593460c34bac322fa40e5cdc3d266d6a181947",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa4ed85_33b7a2da",
+        "filename": "impl/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 2759
+      },
+      "writtenOn": "2015-12-21T18:36:36Z",
+      "side": 1,
+      "message": "too many tabs, put instructions on a new line and indent with the same formatting the rest of the file has.",
+      "revId": "d8593460c34bac322fa40e5cdc3d266d6a181947",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa4ed85_53bc9ebb",
+        "filename": "impl/src/main/java/org/opendaylight/usecplugin/impl/UsecpluginProvider.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 2759
+      },
+      "writtenOn": "2015-12-21T18:36:36Z",
+      "side": 1,
+      "message": "tailing whitespace. Please consider setting your IDE to remove trailing whitespace.",
+      "range": {
+        "startLine": 46,
+        "startChar": 62,
+        "endLine": 46,
+        "endChar": 63
+      },
+      "revId": "d8593460c34bac322fa40e5cdc3d266d6a181947",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
