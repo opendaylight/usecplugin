@@ -38,30 +38,20 @@ public class UsecpluginProvider implements  BindingAwareProvider, AutoCloseable{
         usecpluginService = session.addRpcImplementation(UsecpluginService.class, new UsecpluginRPCImpl());
         NotificationService notificationService = session.getSALService(NotificationService.class);
         PacketHandler packetHandler = new PacketHandler();
-        notificationService.registerNotificationListener(packetHandler);
-        
+        notificationService.registerNotificationListener(packetHandler);     
         NotificationProviderService notificationProvider = session.getSALService(NotificationProviderService.class);
         packetHandler.setNotificationProviderService(notificationProvider);
-
-        
-        //PacketHandler_HWM packetHandler_hwm = new PacketHandler_HWM();
-        //notificationService.registerNotificationListener(packetHandler_hwm);
-        
-        dataBroker = session.getSALService(DataBroker.class);
-        
-        //packetHandler_hwm.setdataBroker(dataBroker);
-        //packetHandler_hwm.dbHwm();
-        
+        PacketHandler_HWM packetHandler_hwm = new PacketHandler_HWM();
+        notificationService.registerNotificationListener(packetHandler_hwm);       
+        dataBroker = session.getSALService(DataBroker.class);       
+        packetHandler_hwm.setdataBroker(dataBroker);
+        packetHandler_hwm.dbHwm();       
         packetHandler.setdataBroker(dataBroker);
-        packetHandler.dbOpen();
-        
+        packetHandler.dbOpen();       
         UsecpluginNotifImpl listener = new UsecpluginNotifImpl();
-  	notificationService.registerNotificationListener(listener);
-  	    
-  	    
-  	//packetHandler_hwm.getHWMSample();
-  	packetHandler.getLWMSample();  	  
-  	    
+  	notificationService.registerNotificationListener(listener);      	    
+  	packetHandler_hwm.getHWMSample();
+  	packetHandler.getLWMSample();  	   	    
     }
 
     @Override
