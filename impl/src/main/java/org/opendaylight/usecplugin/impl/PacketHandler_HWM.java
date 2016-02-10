@@ -146,7 +146,7 @@ public class PacketHandler_HWM implements PacketProcessingListener {
 						ingressConnector, srcIP, dstIP, IPProtocol, srcPort,
 						dstPort, packetSize, upwardTime, downwardTime);
 
-				System.out.println("Information Stored in HWM Data Store is "
+				LOG.info"Information Stored in HWM Data Store is "
 						+ ingressNode + ingressConnector + srcIP + dstIP
 						+ IPProtocol + srcPort + dstPort + packetSize
 						+ upwardTime + downwardTime);

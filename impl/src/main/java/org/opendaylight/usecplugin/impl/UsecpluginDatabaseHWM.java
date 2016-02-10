@@ -12,27 +12,31 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class UsecpluginDatabaseHWM {
+	private static final Logger LOG = LoggerFactory.getLogger(UsecpluginDatabaseHWM.class);
 	static Integer counter = 0;
 	Connection connection = null;
 	Statement stmt = null;
 
 	public void dbHwm() {
 		try {
-			System.out.println("Creating HWM DB");
+			LOG.info("Creating HWM DB");
 			Class.forName("org.sqlite.JDBC", true, Thread.currentThread()
 					.getContextClassLoader());
 			connection = DriverManager
 					.getConnection("jdbc:sqlite:usecpluginhwm:db");
 			connection.setAutoCommit(false);
-			System.out.println("Opened HWM DB Successfully");
+			LOG.info("Opened HWM DB Successfully");
 			stmt = connection.createStatement();
 			DatabaseMetaData metaData = connection.getMetaData();
 			ResultSet tableInfo = metaData.getTables(null, null, "%", null);
 			List<String> tableList = new ArrayList<String>();
 			while (tableInfo.next()) {
 				tableList.add(tableInfo.getString(3));
-				System.out.println("Table info " + tableList.get(0));
+				LOG.info("Table info " + tableList.get(0));
 			}
 
 			if (!tableList.contains("UsecPluginHWM")) {
@@ -88,7 +92,7 @@ public class UsecpluginDatabaseHWM {
 			connection = DriverManager
 					.getConnection("jdbc:sqlite:usecpluginhwm:db");
 			connection.setAutoCommit(false);
-			System.out.println("Opened HWM DB Successfully");
+			Log.info("Opened HWM DB Successfully");
 			stmt = connection.createStatement();
 
 			int IDCount;

@@ -154,7 +154,7 @@ public class PacketHandler implements PacketProcessingListener {
 				upwardTime = dateFormat.format(upTime); //for storing in DataStore
 				usecpluginStore.addData(databaseKey, ingressNode, ingressConnector, srcIP, dstIP,
 						IPProtocol, srcPort, dstPort, packetSize, upwardTime, downwardTime);
-				System.out.println("Information Stored in Data Store is "+ ingressNode+ ingressConnector+ srcIP+ dstIP+
+				LOG.info("Information Stored in Data Store is "+ ingressNode+ ingressConnector+ srcIP+ dstIP+
 						IPProtocol+ srcPort+ dstPort+ packetSize+ upwardTime+ downwardTime);
 
 			}

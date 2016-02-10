@@ -77,7 +77,7 @@ public class UsecpluginRPCImpl implements UsecpluginService {
 	    }
             
             connection.setAutoCommit(false);
-            System.out.println("Opened DB Successfully");
+            LOG.info("Opened DB Successfully");
             stmt = connection.createStatement();
             String nodeID = input.getNodeID();
             String s = "Select  NodeID, Count(*) as ATTACKS from UsecPluginLWM WHERE NodeID = '" + nodeID + "' " ;
@@ -113,7 +113,7 @@ public class UsecpluginRPCImpl implements UsecpluginService {
             connection = DriverManager.getConnection("jdbc:sqlite:usecplugin:db");   
             }
             connection.setAutoCommit(false);
-            System.out.println("Opened DB Successfully");
+            LOG.info("Opened DB Successfully");
             stmt = connection.createStatement();
             String srcIP = input.getSrcIP();
             String s1 = "SELECT  SrcIP, Count(*) as ATTACKS FROM UsecPluginLWM WHERE SrcIP = '" + srcIP + "'  ";
@@ -148,7 +148,7 @@ public class UsecpluginRPCImpl implements UsecpluginService {
             connection = DriverManager.getConnection("jdbc:sqlite:usecplugin:db");   
             }
             connection.setAutoCommit(false);
-            System.out.println("Opened DB Successfully");
+            LOG.info("Opened DB Successfully");
             stmt = connection.createStatement();
        
             String dstIP = input.getDstIP();

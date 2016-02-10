@@ -10,27 +10,31 @@ package org.opendaylight.usecplugin.impl;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.inventory.rev130819.NodeId;
 
 public class UsecpluginDataBase {
+    private static final Logger LOG = LoggerFactory
+            .getLogger(UsecpluginDataBase.class);
+
     static Integer counter = 0;
     Connection connection = null;
     Statement stmt = null;
     public void dbOpen() {
         try {
-            System.out.println("Creating LWM Usecplugin");
+            LOG.info("Creating LWM Usecplugin");
             Class.forName("org.sqlite.JDBC", true, Thread.currentThread().getContextClassLoader());
             connection = DriverManager.getConnection("jdbc:sqlite:usecplugin:db");
             connection.setAutoCommit(false);
-            System.out.println("Opened LWM DB Successfully");
+            LOG.info("Opened LWM DB Successfully");
             stmt = connection.createStatement();
             DatabaseMetaData metaData = connection.getMetaData();
             ResultSet tableInfo = metaData.getTables(null, null, "%", null);
             List<String> tableList = new ArrayList<String>();
             while (tableInfo.next()) {
                 tableList.add(tableInfo.getString(3));
-                System.out.println("Table info " + tableList.get(0));
+                LOG.info("Table info " + tableList.get(0));
             }
 
             if (!tableList.contains("UsecPluginLWM")) {
@@ -79,7 +83,7 @@ public class UsecpluginDataBase {
             Class.forName("org.sqlite.JDBC", true, Thread.currentThread().getContextClassLoader());
             connection = DriverManager.getConnection("jdbc:sqlite:usecplugin:db");
             connection.setAutoCommit(false);
-            System.out.println("Opened LWM DB Successfully");
+            LOG.info("Opened LWM DB Successfully");
             stmt = connection.createStatement();
             int IDCount;  
             IDCount = 0;          
