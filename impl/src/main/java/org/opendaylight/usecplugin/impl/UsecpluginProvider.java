@@ -34,7 +34,6 @@ public class UsecpluginProvider implements  BindingAwareProvider, AutoCloseable{
     @Override
     public void onSessionInitiated(ProviderContext session) {
     	LOG.info("UsecpluginProvider Session Initiated");
-    	System.out.println("UsecpluginProvider Session Initiated");
         usecpluginService = session.addRpcImplementation(UsecpluginService.class, new UsecpluginRPCImpl());
         NotificationService notificationService = session.getSALService(NotificationService.class);
         PacketHandler packetHandler = new PacketHandler();

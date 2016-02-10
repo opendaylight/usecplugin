@@ -15,10 +15,14 @@ import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.usecplug
 import org.opendaylight.yangtools.concepts.ListenerRegistration;
 import org.opendaylight.yangtools.yang.binding.NotificationListener;
 import org.opendaylight.yangtools.yang.binding.Notification;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class UsecpluginNotifImpl implements UsecpluginListener {
+    private static final Logger LOG = LoggerFactory.getLogger(UsecpluginNotifImpl.class);
+
     @Override
     public void onLowWaterMarkBreached(LowWaterMarkBreached notification) {
-    System.out.println("NotificationReceived");
+    LOG.info("NotificationReceived");
     }
 }
