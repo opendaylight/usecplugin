@@ -28,7 +28,6 @@
 				<version>2.3.6</version>
 				<configuration>
 	<instructions>
-        <Import-Package>com.sun.jersey.api.client.*, javax.ws.rs.core.*,</Import-Package>
         <DynamicImport-Package>*</DynamicImport-Package>
         <Embed-Dependency>sqlite-jdbc;type=!pom;inline=false</Embed-Dependency>
         <Embed-Transitive>true</Embed-Transitive>
