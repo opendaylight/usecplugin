@@ -19,86 +19,24 @@
 	<version>1.1.0-SNAPSHOT</version>
 	<packaging>bundle</packaging>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.felix</groupId>
-				<artifactId>maven-bundle-plugin</artifactId>
-				<extensions>true</extensions>
-				<version>2.3.6</version>
-				<configuration>
-	<instructions>
-        <Import-Package>com.sun.jersey.api.client.*, javax.ws.rs.core.*,</Import-Package>
-        <DynamicImport-Package>*</DynamicImport-Package>
-        <Embed-Dependency>sqlite-jdbc;type=!pom;inline=false</Embed-Dependency>
-        <Embed-Transitive>true</Embed-Transitive>
-    </instructions>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-
 	<dependencies>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>usecplugin-api</artifactId>
-			<version>${project.version}</version>
-		</dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>usecplugin-api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
 
-		<!-- Testing Dependencies -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
+    <!-- Testing Dependencies -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
 
-		<dependency>
-			<groupId>org.opendaylight.mdsal</groupId>
-			<artifactId>yang-binding</artifactId>
-			<version>0.9.0-SNAPSHOT</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.opendaylight.controller</groupId>
-			<artifactId>sal-binding-api</artifactId>
-			<version>1.4.0-SNAPSHOT</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.opendaylight.controller</groupId>
-			<artifactId>config-api</artifactId>
-			<version>0.5.0-SNAPSHOT</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.opendaylight.openflowplugin.model</groupId>
-			<artifactId>model-flow-service</artifactId>
-			<version>0.3.0-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.opendaylight.controller.model</groupId>
-			<artifactId>model-inventory</artifactId>
-			<version>1.4.0-SNAPSHOT</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.opendaylight.openflowplugin</groupId>
-			<artifactId>openflowplugin-api</artifactId>
-			<version>0.3.0-SNAPSHOT</version>
-		</dependency>
-		<!-- End -->
-
-		<dependency>
-			<groupId>org.xerial</groupId>
-			<artifactId>sqlite-jdbc</artifactId>
-			<version>3.7.2</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-all</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
-
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-all</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 </project>
