@@ -30,18 +30,28 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
         <artifactId>usecplugin-api</artifactId>
         <version>${project.version}</version>
       </dependency>
-      <dependency>
+
+<dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>usecplugin-impl</artifactId>
+        <artifactId>usecplugin-aaa</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>usecplugin-features</artifactId>
+        <artifactId>usecplugin-openflow</artifactId>
         <version>${project.version}</version>
+      </dependency>
+
+
+<dependency>
+        <groupId>org.opendaylight.usecplugin</groupId>
+        <artifactId>features-usecplugin</artifactId>
         <classifier>features</classifier>
         <type>xml</type>
+           <version>${project.version}</version>
       </dependency>
+
+
     </dependencies>
   </dependencyManagement>
 </project>
