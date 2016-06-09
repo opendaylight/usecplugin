@@ -1,0 +1,35 @@
+module usecpluginaaa-impl {
+    yang-version 1;
+    namespace "urn:opendaylight:params:xml:ns:yang:usecpluginaaa:impl";
+    prefix "usecpluginaaa-impl";
+
+    import config { prefix config; revision-date 2013-04-05; }
+    import opendaylight-md-sal-binding { prefix md-sal-binding; revision-date 2013-10-28;}
+
+    description
+        "Service definition for usecpluginaaa project";
+
+    revision "2014-12-10" {
+        description
+            "Initial revision";
+    }
+
+    identity usecpluginaaa {
+        base config:module-type;
+        config:java-name-prefix Usecpluginaaa;
+    }
+
+    augment "/config:modules/config:module/config:configuration" {
+        case usecpluginaaa {
+            when "/config:modules/config:module/config:type = 'usecpluginaaa'";
+            container broker {
+                uses config:service-ref {
+                    refine type {
+                        mandatory true;
+                        config:required-identity md-sal-binding:binding-broker-osgi-registry;
+                    }
+                }
+            }
+        }
+    }
+}

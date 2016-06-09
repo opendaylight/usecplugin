@@ -1,0 +1,63 @@
+module usecpluginaaa {
+    yang-version 1;
+    namespace "urn:opendaylight:params:xml:ns:yang:usecpluginaaa";
+    prefix "usecpluginaaa";
+
+    revision "2015-01-05" {
+        description "Initial revision of usecpluginaaa model";
+    }
+notification invalidloginattempt{
+    description
+       "Indicates that the login attempt is invalid.";   
+}
+
+rpc attemptOnDateTime {
+        input {
+            leaf dateTime {
+                type string;
+            }
+        }
+        output {
+           leaf loginAttempt{
+                type string;
+            }
+        }
+    }
+
+rpc attemptFromIP {
+        input {
+            leaf srcIP {
+                type string;
+            }
+        }
+        output {
+             
+           leaf loginAttempt{
+                type string;
+            }
+        }
+    }
+
+container security{
+        list loginattempts{
+            key time;
+           
+           
+            leaf time {
+                type string;
+            }
+             leaf srcIP {
+                type string;
+            }
+            leaf attempt {
+                type string;
+            }
+            
+            config false;
+        }
+    }
+    
+    
+  
+}
+
