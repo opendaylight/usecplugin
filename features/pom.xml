@@ -28,6 +28,7 @@
 		<controller-model-version>1.4.0-SNAPSHOT</controller-model-version>
 		<openflow.plugin.version>0.3.0-SNAPSHOT</openflow.plugin.version>
 		<yangtools.version>1.0.0-SNAPSHOT</yangtools.version>
+    <dlux.version>0.4.0-SNAPSHOT</dlux.version>
 		<configfile.directory>etc/opendaylight/karaf</configfile.directory>
 	</properties>
 <!-- End -->
@@ -53,7 +54,6 @@
 	</build>
 	<!-- End -->
 
-	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>org.opendaylight.controller</groupId>
@@ -62,9 +62,15 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-		</dependencies>
-	</dependencyManagement>
-	<dependencies>
+
+    <dependency>
+      <groupId>org.opendaylight.dlux</groupId>
+      <artifactId>features-dlux</artifactId>
+      <classifier>features</classifier>
+      <version>${dlux.version}</version>
+      <type>xml</type>
+      <scope>runtime</scope>
+    </dependency>
 		<dependency>
 			<groupId>org.opendaylight.yangtools</groupId>
 			<artifactId>features-yangtools</artifactId>
@@ -91,22 +97,221 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>usecplugin-impl</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>usecplugin-impl</artifactId>
-			<version>${project.version}</version>
-			<type>xml</type>
-			<classifier>config</classifier>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>usecplugin-api</artifactId>
-			<version>${project.version}</version>
-		</dependency>
+    <dependency>
+      <groupId>org.opendaylight.usecplugin</groupId>
+      <artifactId>usecplugin-aaa-impl</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.opendaylight.usecplugin</groupId>
+      <artifactId>usecplugin-aaa-impl</artifactId>
+      <version>${project.version}</version>
+      <type>xml</type>
+      <classifier>config</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>org.opendaylight.usecplugin</groupId>
+      <artifactId>usecplugin-openflow-impl</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.opendaylight.usecplugin</groupId>
+      <artifactId>usecplugin-openflow-impl</artifactId>
+      <version>${project.version}</version>
+      <type>xml</type>
+      <classifier>config</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>usecplugin-api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+	<dependency>
+            <groupId>org.opendaylight.controller.model</groupId>
+            <artifactId>model-topology</artifactId>
+     <version>1.4.0-SNAPSHOT</version>
+        </dependency>
+	
+		 <dependency>
+            <groupId>org.opendaylight.openflowplugin.model</groupId>
+            <artifactId>model-flow-base</artifactId>
+<version>0.3.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opendaylight.openflowplugin.model</groupId>
+            <artifactId>model-flow-service</artifactId>
+<version>0.3.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opendaylight.openflowplugin.model</groupId>
+            <artifactId>model-flow-statistics</artifactId>
+<version>0.3.0-SNAPSHOT</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.opendaylight.controller.model</groupId>
+            <artifactId>model-inventory</artifactId>
+<version>1.4.0-SNAPSHOT</version>
+        </dependency>
+        
+       <!--  <dependency>
+            <groupId>org.opendaylight.controller.model</groupId>
+            <artifactId>model-topology</artifactId>
+<version>1.2.0-Lithium</version>
+        </dependency> -->
+
+        <dependency>
+            <groupId>org.opendaylight.openflowplugin.applications</groupId>
+            <artifactId>forwardingrules-manager</artifactId>
+<version>0.3.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opendaylight.openflowplugin.applications</groupId>
+            <artifactId>forwardingrules-manager-config</artifactId>
+            <classifier>config</classifier>
+            <type>xml</type>
+<version>0.3.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opendaylight.openflowplugin.applications</groupId>
+            <artifactId>inventory-manager</artifactId>
+<version>0.3.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opendaylight.openflowplugin.applications</groupId>
+            <artifactId>inventory-manager</artifactId>
+            <type>xml</type>
+            <classifier>config</classifier>
+<version>0.3.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opendaylight.openflowplugin.applications</groupId>
+            <artifactId>lldp-speaker</artifactId>
+<version>0.3.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opendaylight.openflowplugin.applications</groupId>
+            <artifactId>lldp-speaker</artifactId>
+            <type>xml</type>
+            <classifier>config</classifier>
+<version>0.3.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.opendaylight.openflowplugin.applications</groupId>
+            <artifactId>statistics-manager</artifactId>
+<version>0.3.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opendaylight.openflowplugin.applications</groupId>
+            <artifactId>statistics-manager-config</artifactId>
+            <classifier>config</classifier>
+            <type>xml</type>
+<version>0.3.0-SNAPSHOT</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.opendaylight.openflowplugin</groupId>
+            <artifactId>openflowplugin-controller-config</artifactId>
+            <type>xml</type>
+            <classifier>config-He</classifier>
+<version>0.3.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.opendaylight.openflowplugin</groupId>
+            <artifactId>openflowplugin-controller-config</artifactId>
+            <type>xml</type>
+            <classifier>configmsgspy</classifier>
+<version>0.3.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.opendaylight.openflowplugin.applications</groupId>
+            <artifactId>of-switch-config-pusher</artifactId>
+<version>0.3.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opendaylight.openflowplugin.applications</groupId>
+            <artifactId>of-switch-config-pusher</artifactId>
+            <type>xml</type>
+            <classifier>config</classifier>
+<version>0.3.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opendaylight.openflowplugin.applications</groupId>
+            <artifactId>topology-lldp-discovery</artifactId>
+<version>0.3.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opendaylight.openflowplugin.applications</groupId>
+            <artifactId>topology-lldp-discovery</artifactId>
+            <type>xml</type>
+            <classifier>config</classifier>
+<version>0.3.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opendaylight.openflowplugin.applications</groupId>
+            <artifactId>topology-manager</artifactId>
+<version>0.3.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opendaylight.openflowplugin.applications</groupId>
+            <artifactId>topology-manager</artifactId>
+            <type>xml</type>
+            <classifier>config</classifier>
+<version>0.3.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.opendaylight.openflowplugin</groupId>
+            <artifactId>openflowplugin-common</artifactId>
+<version>0.3.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.opendaylight.openflowplugin</groupId>
+            <artifactId>openflowplugin-api</artifactId>
+<version>0.3.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opendaylight.openflowplugin</groupId>
+            <artifactId>openflowplugin-extension-api</artifactId>
+<version>0.3.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opendaylight.openflowplugin</groupId>
+            <artifactId>openflowplugin</artifactId>
+<version>0.3.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opendaylight.openflowplugin</groupId>
+            <artifactId>openflowplugin-impl</artifactId>
+<version>0.3.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.opendaylight.openflowjava</groupId>
+            <artifactId>features-openflowjava</artifactId>
+            <version>0.8.0-SNAPSHOT</version>
+            <classifier>features</classifier>
+            <type>xml</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.opendaylight.openflowplugin</groupId>
+            <artifactId>openflowplugin-blueprint-config-he</artifactId>
+<version>0.3.0-SNAPSHOT</version>
+        </dependency>
+
+  <dependency>
+  <groupId>org.opendaylight.sdninterfaceapp</groupId>
+  <artifactId>features-sdninterfaceapp</artifactId>
+  <version>1.7.0-SNAPSHOT</version>
+  </dependency>
 	</dependencies>
 </project>

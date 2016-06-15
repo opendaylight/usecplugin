@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Tata Consultancy Services and others. All rights reserved.
+Copyright © 2015 tcs.com and others. All rights reserved.
 This program and the accompanying materials are made available under the
 terms of the Eclipse Public License v1.0 which accompanies this distribution,
 and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
@@ -11,26 +11,22 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
     <groupId>org.opendaylight.odlparent</groupId>
     <artifactId>odlparent</artifactId>
     <version>1.7.0-SNAPSHOT</version>
+    <relativePath/>
   </parent>
 
-  <groupId>org.opendaylight.usecplugin</groupId>
-  <artifactId>usecplugin-aggregator</artifactId>
+ <artifactId>usecplugin-aaa</artifactId>
+  <groupId>org.opendaylight.usecplugin.usecplugin-aaa</groupId>
   <version>1.1.0-SNAPSHOT</version>
-  <name>usecplugin</name>
   <packaging>pom</packaging>
+
   <modelVersion>4.0.0</modelVersion>
   <prerequisites>
     <maven>3.1.1</maven>
   </prerequisites>
   <modules>
-    <module>api</module>
-    <module>usecplugin-aaa</module>
-    <module>usecplugin-openflow</module>
-    <module>karaf</module>
-    <module>features</module>
-    <module>artifacts</module>
+    <module>usecplugin-aaa-impl</module>
   </modules>
-  <!-- DO NOT install or deploy the repo root pom as it's only needed to initiate a build -->
+
   <build>
     <plugins>
       <plugin>
@@ -51,9 +47,9 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
   </build>
 
   <scm>
-    <connection>scm:git:ssh://git.opendaylight.org:29418/usecplugin.git</connection>
-    <developerConnection>scm:git:ssh://git.opendaylight.org:29418/usecplugin.git</developerConnection>
+    <connection>scm:git:ssh://git.opendaylight.org:29418/usecpluginaaa.git</connection>
+    <developerConnection>scm:git:ssh://git.opendaylight.org:29418/usecpluginaaa.git</developerConnection>
     <tag>HEAD</tag>
-    <url>https://wiki.opendaylight.org/view/usecplugin:Main</url>
+    <url>https://wiki.opendaylight.org/view/usecpluginaaa:Main</url>
   </scm>
 </project>
