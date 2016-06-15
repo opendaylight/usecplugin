@@ -113,13 +113,13 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
     </dependency>
 
     <dependency>
-      <groupId>org.opendaylight.usecplugin</groupId>
-      <artifactId>usecplugin-openflow-impl</artifactId>
+      <groupId>org.opendaylight.usecplugin.usecplugin-openflow</groupId>
+      <artifactId>impl</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.opendaylight.usecplugin</groupId>
-      <artifactId>usecplugin-openflow-impl</artifactId>
+      <groupId>org.opendaylight.usecplugin.usecplugin-openflow</groupId>
+      <artifactId>impl</artifactId>
       <version>${project.version}</version>
       <type>xml</type>
       <classifier>config</classifier>

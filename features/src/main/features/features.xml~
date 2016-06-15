@@ -40,7 +40,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
 
   <feature name='odl-usecplugin-sdni' version='${project.version}' description='OpenDaylight :: usecplugin-sdni :: Attack Info with SDNi Peer Attack'>
   <feature version='${project.version}'>odl-usecplugin-api</feature>
-  <!--feature version='1.7.0-SNAPSHOT'>odl-sdninterfaceapp-all</feature-->
+  <feature version='1.7.0-SNAPSHOT'>odl-sdninterfaceapp-all</feature>
   </feature>
 
   <feature name='odl-usecplugin-all' version='${project.version}' description='OpenDaylight :: usecplugin-sdni :: Attack Info with SDNi Peer Attack'>
