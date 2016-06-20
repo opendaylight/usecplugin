@@ -37,7 +37,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>usecplugin-aaa</artifactId>
+        <artifactId>usecpluginaaa</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
