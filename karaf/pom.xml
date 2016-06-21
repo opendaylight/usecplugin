@@ -45,7 +45,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
 
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>usecplugin-features</artifactId>
+      <artifactId>features-usecplugin</artifactId>
       <classifier>features</classifier>
       <type>xml</type>
       <scope>runtime</scope>
