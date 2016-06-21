@@ -24,7 +24,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html INTERNAL
   </prerequisites>
   <modules>
     <module>api</module>
-    <module>usecplugin-aaa</module>
+    <module>usecpluginaaa</module>
     <module>usecplugin-openflow</module>
     <module>karaf</module>
     <module>features</module>
