@@ -19,6 +19,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
   <repository>mvn:org.opendaylight.openflowjava/features-openflowjava/0.8.0-SNAPSHOT/xml/features</repository>
   <feature name='odl-usecplugin-api' version='${project.version}' description='OpenDaylight :: usecplugin-api :: Common APIs for usecplugin-aaa and usecplugin-openflow'>
   <feature version='${mdsal.model.version}'>odl-mdsal-models</feature>
+  <feature version='${dlux.version}'>odl-dlux-all</feature>
   <bundle>mvn:org.opendaylight.usecplugin/usecplugin-api/${project.version}</bundle>
   </feature>
 
@@ -32,7 +33,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
   <feature name='odl-usecplugin-openflow' version='${project.version}' description='OpenDaylight :: usecplugin-openflow :: Attack Info with OpenFlow Packet_In'>
   <feature version='${mdsal.version}'>odl-mdsal-broker</feature>
   <feature version='${project.version}'>odl-usecplugin-api</feature>
-  <feature version='0.3.0-SNAPSHOT'>odl-openflowplugin-all</feature>
+  <feature version='0.3.0-SNAPSHOT'>odl-openflowplugin-app-notifications</feature>
   <bundle>mvn:org.opendaylight.usecplugin/usecplugin-openflow-impl/${project.version}</bundle>
   <configfile finalname="${configfile.directory}/usecplugin-openflow.xml">mvn:org.opendaylight.usecplugin/usecplugin-openflow-impl/${project.version}/xml/config</configfile>
   </feature>

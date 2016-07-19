@@ -1,11 +1,10 @@
 /*
- * Copyright (c) 2015 Tata Consultancy Services and others.  All rights reserved.
+ * Copyright (c) 2016 Tata Consultancy Services and others.  All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-
 package org.opendaylight.usecpluginaaa.impl;
 
 import org.opendaylight.controller.md.sal.binding.api.ReadOnlyTransaction;
@@ -88,69 +87,51 @@ public class RPCImpl implements UsecpluginaaaService {
 		this.dataBroker = dataBroker;
 	}
 
-	static String fileName = "/home/tcs/Desktop/distribution-karaf-0.4.2-Beryllium-SR2/data/log/karaf.log";
+	UsecpluginAAAStore usecpluginAAAStore = new UsecpluginAAAStore();
+	List<Loginattempts> loginattempts = new ArrayList<Loginattempts>();
 
 	// AttemptFromSrcIP
-	@Override
+    @Override
 	public Future<RpcResult<AttemptFromIPOutput>> attemptFromIP(
 			AttemptFromIPInput input) {
 		Boolean value = false;
 		String time = "";
 		String attempt = "";
-		String srcIP = "";
 		String content = "";
-
+		String listOfSource_IP = "";
 		try {
-			String InputSrcIP = input.getSrcIP();
-			Path path = Paths.get(fileName);
 
-			Scanner scanner = new Scanner(path);
-			scanner = new Scanner(path);
+			usecpluginAAAStore.setdataBroker(dataBroker);
+			InstanceIdentifier<Security> instanceIdentifier = InstanceIdentifier
+					.create(Security.class);
+			ReadOnlyTransaction readTransaction = dataBroker
+					.newReadOnlyTransaction();
+			loginattempts = readTransaction
+					.read(LogicalDatastoreType.OPERATIONAL, instanceIdentifier)
+					.checkedGet().get().getLoginattempts();
+			String inputSrcIP = input.getSrcIP();
 
-			while (scanner.hasNext()) {
-				String line = scanner.nextLine();
-				if (line.contains("DEBUG") && line.contains("from"))
-
-				{
-
-					String phrase1 = line;
-					String delims = "[,]+";
-					String[] tokens = phrase1.split(delims);
-
-					String phrase2 = line;
-					String delims2 = "[|]+";
-					String[] tokens2 = phrase2.split(delims2);
-					time = tokens[0];
-					attempt = tokens2[5];
-
-					String phrase3 = line;
-
-					String[] parts = phrase3.split(" ");
-					srcIP = parts[parts.length - 1];
-
-					
-					if (srcIP.matches(InputSrcIP)) {
-						value = true;
-						content += attempt + "  " + "on" + " " + time + ",";
-						
-
-					}
-
+			for (Loginattempts loginattempt : loginattempts) {
+				listOfSource_IP = loginattempt.getSrcIP();
+				if (listOfSource_IP.matches(inputSrcIP)) {
+					value = true;
+					content += loginattempt.getAttempt() + "  " + "on" + " "
+							+ loginattempt.getTime() + ",";
 				}
 			}
-			if (value == true)
-				attemptFromIPOutputBuilder.setLoginAttempt(content);
-			else
-				attemptFromIPOutputBuilder.setLoginAttempt("No attempts");
-
+			if (value == true) {
+				  attemptFromIPOutputBuilder.setLoginAttempt(content);
+                                  LOG.info(content);
+			} else
+				{
+                                     attemptFromIPOutputBuilder.setLoginAttempt("No Attempts");
+                                     LOG.info("No Attempts from given IP");
+                                }
 		} catch (Exception e) {
-
-			e.printStackTrace();
+			System.out.print("Caught the NullPointerException");
 		}
-
 		return RpcResultBuilder.success(attemptFromIPOutputBuilder.build())
 				.buildFuture();
-
 	}
 
 	// Attempt_on_datetime
@@ -160,59 +141,43 @@ public class RPCImpl implements UsecpluginaaaService {
 		Boolean value = false;
 		String time = "";
 		String attempt = "";
-		String srcIP = "";
 		String content = "";
-		String InputDateTime = "";
+		String listOfStoredTime = "";
 		try {
-			Path path = Paths.get(fileName);
-			Scanner scanner = new Scanner(path);
-			scanner = new Scanner(path);
-			InputDateTime = input.getDateTime();
-			while (scanner.hasNext()) {
-				String line = scanner.nextLine();
-				if (line.contains("DEBUG") && line.contains("from"))
-
-				{
-
-					String phrase1 = line;
-					String delims = "[,]+";
-					String[] tokens = phrase1.split(delims);
-
-					String phrase2 = line;
-					String delims2 = "[|]+";
-					String[] tokens2 = phrase2.split(delims2);
-					time = tokens[0];
-					attempt = tokens2[5];
-
-					String phrase3 = line;
-
-					String[] parts = phrase3.split(" ");
-					srcIP = parts[parts.length - 1];
-
-					
-
-					if (time.matches(InputDateTime)) {
-						value = true;
-						
-						content += attempt + "  " + "on" + " " + time + ",";
-						System.out.println("LoginAttempt:" + content);
-					}
+			usecpluginAAAStore.setdataBroker(dataBroker);
+			InstanceIdentifier<Security> instanceIdentifier = InstanceIdentifier
+					.create(Security.class);
+			ReadOnlyTransaction readTransaction = dataBroker
+					.newReadOnlyTransaction();
+			loginattempts = readTransaction
+					.read(LogicalDatastoreType.OPERATIONAL, instanceIdentifier)
+					.checkedGet().get().getLoginattempts();
+			String inputDateTime = input.getDateTime();
+			for (Loginattempts loginattempt : loginattempts) {
+				listOfStoredTime = loginattempt.getTime();
+				if (listOfStoredTime.matches(inputDateTime)) {
+					value = true;
+					content += loginattempt.getAttempt() + "  " + "on" + " "
+							+ loginattempt.getTime();
 
 				}
 			}
 			if (value == true)
-				attemptOnDateTimeOutputBuilder.setLoginAttempt(content);
+				{
+                                    attemptOnDateTimeOutputBuilder.setLoginAttempt(content);
+                                    LOG.info(content);
+                                }
+
 			else
-				attemptOnDateTimeOutputBuilder.setLoginAttempt("No attempts");
+		             {
+                              attemptOnDateTimeOutputBuilder.setLoginAttempt("No Attempts");
+                              LOG.info("No Attempts on given dateTime");
+                             }
 
 		} catch (Exception e) {
-
 			e.printStackTrace();
 		}
-
 		return RpcResultBuilder.success(attemptOnDateTimeOutputBuilder.build())
 				.buildFuture();
-
-	}
-
+}
 }

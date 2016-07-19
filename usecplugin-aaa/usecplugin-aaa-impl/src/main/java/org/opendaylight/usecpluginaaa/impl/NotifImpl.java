@@ -1,11 +1,10 @@
 /*
- * Copyright (c) 2015 Tata Consultancy Services and others.  All rights reserved.
+ * Copyright (c) 2016 Tata Consultancy Services and others.  All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-
 package org.opendaylight.usecpluginaaa.impl;
 
 import org.opendaylight.yang.gen.v1.urn.opendaylight.params.xml.ns.yang.usecpluginaaa.rev150105.UsecpluginaaaListener;
@@ -26,6 +25,7 @@ import java.util.List;
 import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import org.opendaylight.controller.md.sal.binding.api.DataBroker;
 import org.opendaylight.controller.sal.binding.api.NotificationService;
@@ -39,7 +39,7 @@ public class NotifImpl implements UsecpluginaaaListener {
 
 	@Override
 	public void onInvalidloginattempt(Invalidloginattempt notification) {
-		System.out.println("NotificationReceived");
+		LOG.info("Notification Received ");
 	}
 
 }
