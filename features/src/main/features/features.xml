@@ -33,7 +33,7 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
   <feature name='odl-usecplugin-openflow' version='${project.version}' description='OpenDaylight :: usecplugin-openflow :: Attack Info with OpenFlow Packet_In'>
   <feature version='${mdsal.version}'>odl-mdsal-broker</feature>
   <feature version='${project.version}'>odl-usecplugin-api</feature>
-  <feature version='0.3.0-SNAPSHOT'>odl-openflowplugin-app-notifications</feature>
+  <feature version='0.3.0-SNAPSHOT'>odl-openflowplugin-flow-services-ui</feature>
   <bundle>mvn:org.opendaylight.usecplugin/usecplugin-openflow-impl/${project.version}</bundle>
   <configfile finalname="${configfile.directory}/usecplugin-openflow.xml">mvn:org.opendaylight.usecplugin/usecplugin-openflow-impl/${project.version}/xml/config</configfile>
   </feature>
