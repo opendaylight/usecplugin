@@ -31,7 +31,6 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
   <feature name='odl-usecplugin-ui' version='${project.version}' description='OpenDaylight :: usecplugin :: UI'>
     <feature version="${project.version}">odl-usecplugin-rest</feature>
     <feature version="${mdsal.version}">odl-mdsal-apidocs</feature>
-    <feature version="${mdsal.version}">odl-mdsal-xsql</feature>
   </feature>
 
 </features>
