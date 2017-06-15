@@ -8,12 +8,12 @@
 <parent>
 	<groupId>org.opendaylight.odlparent</groupId>
 	<artifactId>features-parent</artifactId>
-	<version>1.7.4-SNAPSHOT</version>
+	<version>1.7.4-Boron-SR4</version>
 	<relativePath />
 </parent>
 <groupId>org.opendaylight.usecplugin</groupId>
 <artifactId>usecplugin-features</artifactId>
-<version>1.1.4-SNAPSHOT</version>
+<version>1.1.4-Boron-SR4</version>
 <name>${project.artifactId}</name>
 <modelVersion>4.0.0</modelVersion>
 <prerequisites>
@@ -21,14 +21,14 @@
 </prerequisites>
 
 <properties>
-	<mdsal.version>1.4.4-SNAPSHOT</mdsal.version>
-	<mdsal.model.version>0.9.4-SNAPSHOT</mdsal.model.version>
-	<restconf.version>1.4.4-SNAPSHOT</restconf.version>
+	<mdsal.version>1.4.4-Boron-SR4</mdsal.version>
+	<mdsal.model.version>0.9.4-Boron-SR4</mdsal.model.version>
+	<restconf.version>1.4.4-Boron-SR4</restconf.version>
 	<skipTests>false</skipTests>
-	<controller-model-version>1.4.4-SNAPSHOT</controller-model-version>
-	<openflow.plugin.version>0.3.4-SNAPSHOT</openflow.plugin.version>
-	<yangtools.version>1.0.4-SNAPSHOT</yangtools.version>
-	<dlux.version>0.4.4-SNAPSHOT</dlux.version>
+	<controller-model-version>1.4.4-Boron-SR4</controller-model-version>
+	<openflow.plugin.version>0.3.4-Boron-SR4</openflow.plugin.version>
+	<yangtools.version>1.0.4-Boron-SR4</yangtools.version>
+	<dlux.version>0.4.4-Boron-SR4</dlux.version>
 	<configfile.directory>etc/opendaylight/karaf</configfile.directory>
 </properties>
 <build>
@@ -116,7 +116,7 @@
 <dependency>
 	<groupId>org.opendaylight.openflowjava</groupId>
 	<artifactId>features-openflowjava</artifactId>
-	<version>0.8.4-SNAPSHOT</version>
+	<version>0.8.4-Boron-SR4</version>
 	<classifier>features</classifier>
 	<type>xml</type>
 </dependency>
